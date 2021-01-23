@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>COMGONG FINAL</title>
+    <meta charset="UTF-8" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id='root'>
+
+        <div class='js-clock-container clock-container'>
+            <!-- <div class='mario-container'>
+                <img class="box" src="./assets/images/randbox.png" />
+                <img class="mario" src="./assets/images/mario.png" />
+            </div> -->
+            <span class='js-hours'>00</span>
+            <span class='js-blink'>:</span>
+            <span class='js-min'>00</span>
+            <span class='js-blink'>:</span>
+            <span class='js-sec'>00</span>
+        </div>
+        <form class="js-form form">
+            <input type="text" placeholder="Player name" />
+        </form>
+        <span class="js-greetings greetings"></span>
+        <div class='js-logout logout'>
+            LOGOUT
+        </div>
+
+        <form class="js-toDoForm">
+            <input type="text" placeholder="Write a to do" />
+        </form>
+        <div class="list">
+
+            <span>TO DO LIST🔥</span>
+            <ul class="js-toDoList">
+            </ul>
+        </div>
+        <span class='js-weather'></span>
+    </div>
+    <script src="src/bg.js"></script>
+    <script src="src/clock.js"></script>
+    <script src="src/username.js"></script>
+    <script src="src/todolist.js"></script>
+    <script src="src/weather.js"></script>
+</body>
+
+</html>
