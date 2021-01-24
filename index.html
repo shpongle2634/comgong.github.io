@@ -11,40 +11,58 @@
     <div id='root'>
 
         <div class='js-clock-container clock-container'>
-            <!-- <div class='mario-container'>
-                <img class="box" src="./assets/images/randbox.png" />
-                <img class="mario" src="./assets/images/mario.png" />
-            </div> -->
             <span class='js-hours'>00</span>
             <span class='js-blink'>:</span>
             <span class='js-min'>00</span>
             <span class='js-blink'>:</span>
             <span class='js-sec'>00</span>
         </div>
-        <form class="js-form form">
-            <input type="text" placeholder="Player name" />
+
+        <form class="js-name-form name-form white-bg">
+            <input type="text" placeholder="Enter your name" />
         </form>
+
         <span class="js-greetings greetings"></span>
-        <div class='js-logout logout'>
+
+        <div class='js-logout logout white-bg'>
             LOGOUT
         </div>
 
-        <form class="js-toDoForm">
-            <input type="text" placeholder="Write a to do" />
-        </form>
-        <div class="list">
 
-            <span>TO DO LIST🔥</span>
-            <ul class="js-toDoList">
+        <div class="todo-list white-bg">
+            <div class='todo-list-header'>
+                <span>TO DO LIST🔥</span>
+                <form class="js-todo-form">
+                    <input type="text" placeholder="Write a to do" />
+                </form>
+            </div>
+            <ul class="js-todo-list">
             </ul>
         </div>
-        <span class='js-weather'></span>
+
+        <!-- WEATHER INFO -->
+        <div class='js-weather-box weather-box white-bg'>
+            <p class='help'>WEATHER RECOGNITION IMAGE</p>
+            <div class='weather-info'>
+                <p class='label'>Air Pollution</p>
+                <div>
+                    <p>PM 2.5</p>
+                    <p class='js-pm25 value'></p>
+                </div>
+                <div>
+                    <p>PM 10</p>
+                    <p class='js-pm10 value'></p>
+                </div>
+            </div>
+            <p class='js-weather'></p>
+            <p class='js-weather-main weather-main'></p>
+        </div>
+
     </div>
-    <script src="src/bg.js"></script>
     <script src="src/clock.js"></script>
     <script src="src/username.js"></script>
     <script src="src/todolist.js"></script>
-    <script src="src/weather.js"></script>
+    <script src="src/weather_bg.js"></script>
 </body>
 
 </html>

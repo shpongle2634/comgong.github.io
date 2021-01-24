@@ -1,37 +1,35 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Jua&display=swap');
 body {
-    /* font-family: "Press Start 2P", cursive; */
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: 'Audiowide','Jua', sans-serif;
     background-color: #000;
     user-select: none;
-    color: #fff;
     height: 100vh;
     width: 100%;
     margin:0;
-    text-shadow: 4px 2px 2px gray;
+    color:#333;
+    text-shadow: 2px 1px 1px #fff;
 }
 
+.bgImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: fadeIn 0.5s linear;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+
+.white-bg{
+    background-color: rgba(255,255,255,0.7);
+    box-shadow: 3px 1px 1px 1px rgba(100,100,100,0.6);
+}
 div{
     display: flex;
     flex-direction: column;
-}
-
-input{
-    font-family: inherit;
-    border:0;
-    border-bottom: 2px solid #fff;
-    background:transparent;
-    padding:6px 12px;
-    color:#fff
-}
-input:focus{
-    outline:none;
-}
-input::placeholder {
-    color: grey;
-    font-style: italic;
 }
 
 #root{
@@ -48,56 +46,57 @@ input::placeholder {
     align-items: center;
     justify-content: space-between;
     font-size: 5vmax;
+    color: #fff;
+    text-shadow: 4px 2px 2px gray;
 }
 
 .blink{
     color:#cfcfcf;
 }
-/* 
-.mario-container{
-    position: relative;
-    bottom:0vmax;
-    display: flex;
-    flex-direction: column;
-}
-.mario{
-    position: absolute;
-    bottom:4vmax;
-    width:5vmax;
-    height:5vmax;
-    animation: MoveUpDown 5s linear infinite;
-}
-.box{
-    position: absolute;
-    bottom:7.5vmax;
-    width:5vmax;
-    height:5vmax;
-} */
-@keyframes MoveUpDown {
-    0%,10%,100%{
-      bottom: 0;
-    }
-    5% {
-      bottom: 4vmax;
-    }
-}
+
 
 /* USERNAME SECTION */
-.form,
+.name-form,
 .greetings{
     display: none;
-    margin:24px auto;
+    margin:24px 0;
+    min-width: 30vw;
+    padding: 12px;
 }
-.form input{
+
+input{
+    font-family: inherit;
+    border:0;
+    border-bottom: 1px solid rgba(100,100,100,0.6);
+    background:transparent;
+    padding:6px 12px;
+    color:#333;
+}
+input:focus{
+    outline:none;
+}
+input::placeholder {
+    color: rgba(100,100,100,0.8);
+    font-style: italic;
+}
+
+
+.greetings {
+    color: #fff;
+    text-shadow: 4px 2px 2px gray;
+    padding:6px 12px;
+    font-size: 1.7vmax;
+    text-align: center;
+}
+.name-form input{
     font-size: 1.3vmax;
 }
+
 .logout{
     display: none;
     position: fixed;
     top:24px;
     right:32px;
-    
-    border: 2px solid #fff;
     border-radius: 24px;
     padding:6px 12px;
     font-size: 14px;
@@ -112,40 +111,44 @@ input::placeholder {
     display: block;
 }
 
-.js-toDoForm input{
+/* TODO LIST */
+.js-todo-form input{
     font-size: 1vmax;
 }
-
-.list {
+.todo-list {
     margin-top:36px;
     min-height: 30vh;
     min-width: 30vw;
     padding: 12px;
     font-size: 22px;
-    border: 1px solid lightsteelblue;
 }
-.list ul {
+.todo-list-header{
+    flex-direction: row;
+    align-items: center;;
+    justify-content: space-between;
+}
+.todo-list ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows:40px;
     overflow-y: scroll;
     align-items: center;
+    text-transform: uppercase;
 }
 
-.list ul::-webkit-scrollbar {
+.todo-list ul::-webkit-scrollbar {
     display: none;
 }
 
-.list li {
+.todo-list li {
     height: 30px;
 }
 
-
-.list-btn:hover {
+.todo-list-btn:hover {
     background-color: lightsteelblue;
     user-select: none;
 }
-.list-btn {
+.todo-list-btn {
     width: 42px;
     margin-left: 8px;
     cursor: pointer;
@@ -155,13 +158,54 @@ input::placeholder {
 }
 
 
-.bgImage {
+
+  /* WEATHER INFO */
+  .weather-box{
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    animation: fadeIn 0.5s linear;
-    object-fit: cover;
+    top:120px;
+    right:60px;
+    width:240px;
+    height:320px;
+
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    
+    padding:16px;
+    border-radius: 16px;
+  }
+  .weather-info {
+      padding-top:16px;
+      margin-top:12px;
+      border-top:1px solid rgba(100,100,100,0.6);
+  }
+  .weather-info > div{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+  .weather-info .label{
+      font-size: 14px;
+      text-align: center;
+  }
+  .weather-info .value{
+      margin-left:12px;
+      font-weight: bold;
+  }
+  .help{
+      font-size: 13px;
+      margin-top:12px;
+      color:red;
+  }
+  .weather-box p{
+      margin:4px 0;
+  }
+  .weather-main{
+        font-size: 24px;
+        color:orange;   
+  }
+  .icon{
+      width:60px;
+      height:60px;
   }
