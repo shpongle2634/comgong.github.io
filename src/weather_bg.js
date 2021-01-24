@@ -1,28 +1,29 @@
 
 const API_KEY = 'c88aad295eac02d3d5edc1cf35f07d2d'
 const COORDS = 'coords';
-const weatherBox = document.querySelector('.js-weather-box')
-const weatherMainSpan = weatherBox.querySelector('.js-weather-main')
-const weatherSpan = weatherBox.querySelector('.js-weather')
-const pm25Span = weatherBox.querySelector('.js-pm25')
-const pm10Span = weatherBox.querySelector('.js-pm10')
 
-const body = document.querySelector("body");
-const IMG_NUMBER = 3;
+const weatherBox = document.querySelector('.js-weather-box'),
+    weatherMainSpan = weatherBox.querySelector('.js-weather-main'),
+    weatherSpan = weatherBox.querySelector('.js-weather'),
+    pm25Span = weatherBox.querySelector('.js-pm25'),
+    pm10Span = weatherBox.querySelector('.js-pm10'),
+    image = document.querySelector(".bgImage");
 
-const POLLUTIONS = ['GOOD', "NOT BAD", "BAD", "WORST"];
-const COLORS = ['blue', 'green', 'orange', 'red'];
+const IMG_NUMBER = 3, WEATHER_NUMBER = 7;
+
+const WEATERS = ['Clear', 'Clouds', 'Drizzle', "Fog", 'Rain', 'Snow', 'Thunderstorm'],
+    POLLUTIONS = ['GOOD', "NOT BAD", "BAD", "WORST"],
+    COLORS = ['blue', 'green', 'orange', 'red'],
+    SHOWING = 'showing-weather'
 
 // SET RANDOM BACKGROUND IMAGE BASED ON WEATHER INFO
 function paintImage(weather, imgNumber) {
-    const image = new Image();
     image.src = `assets/images/${weather}-${imgNumber + 1}.jpg`;
     image.classList.add("bgImage");
-    body.prepend(image);
 }
 
-function genRandom() {
-    const number = Math.floor(Math.random() * IMG_NUMBER);
+function genRandom(NUMBER) {
+    const number = Math.floor(Math.random() * NUMBER);
     return number;
 }
 
@@ -91,15 +92,19 @@ function getWeather(lat, lon) {
         const { weather, main, name } = json;
         const temperature = main.temp;
         // DISPLAY WEATHER INFO
+        weatherBox.classList.add(SHOWING)
+        // WEATHER ICON
         const icon = new Image();
         icon.src = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
         icon.classList.add('icon')
         weatherBox.appendChild(icon);
+
+        // WEATHER INFO TEXT
         weatherMainSpan.innerText = weather[0].main
         weatherSpan.innerText = `${name}, ${temperature} °C`;
 
-        // SET RANDOM BACKGROUND IMAGE RELATED WEATHER
-        const randomNumber = genRandom();
+        // SET RANDOM BACKGROUND IMAGE BASED ON THE WEATHER
+        const randomNumber = genRandom(IMG_NUMBER);
         const weatherName = Math.floor(weather[0].id / 100) !== 7 ? weather[0].main : 'Fog';
         paintImage(weatherName, randomNumber);
     })
@@ -112,10 +117,12 @@ function handleGeoSuccess(position) {
         longitude: position.coords.longitude
     };
     saveCoords(coords)
+    getWeather(coords.latitude, coords.longitude);
+    getAirPollution(coords.latitude, coords.longitude);
 }
 
 function handleGeoError(position) {
-    console.log('Cant access geo location')
+    alert('Cant access geo location');
 }
 
 function askForCoords() {
@@ -129,6 +136,7 @@ function saveCoords(coords) {
 function loadCoords() {
     const loadedCoords = localStorage.getItem(COORDS);
     if (loadedCoords === null) {
+        image.src = `assets/images/${WEATERS[genRandom(WEATHER_NUMBER)]}-${genRandom(IMG_NUMBER)}.jpg`;
         askForCoords();
     } else {
         const { latitude, longitude } = JSON.parse(loadedCoords);
