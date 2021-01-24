@@ -1,6 +1,5 @@
 
 const API_KEY = 'c88aad295eac02d3d5edc1cf35f07d2d'
-const GOOGLE_API_KEY = 'AIzaSyC0TODLnSIB3ooQy4jsfdiuhYSMCpMXjeA'
 const COORDS = 'coords';
 const weatherSpan = document.querySelector('.js-weather')
 
@@ -9,28 +8,28 @@ function fetchAPI(url) {
         return response.json()
     })
 }
-function getPlaceSearch(cityName) {
-    const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?key=${GOOGLE_API_KEY}&input=${cityName}&inputtype=textquery`
-    fetchAPI(url).then(function (json) {
-        if (json.status === 'OK') {
-            getPlaceDetail(json.candidates[0].place_id)
-        }
-    })
-}
-function getPlaceDetail(place_id) {
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?key=${GOOGLE_API_KEY}&place_id=${place_id}`
-    fetchAPI(url).then(function (json) {
-        if (json.status === 'OK') {
-            getPlaceDetail(json.result.photos[0].photo_reference)
-        }
-    })
-}
-function getPlacePhotos(photo_reference) {
-    const url = `https://maps.googleapis.com/maps/api/place/photo?key=${GOOGLE_API_KEY}&photoreference=${photo_reference}&maxwidth=1960`
-    fetchAPI(url).then(function (json) {
-        console.log(json)
-    })
-}
+// function getPlaceSearch(cityName) {
+//     const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?key=${GOOGLE_API_KEY}&input=${cityName}&inputtype=textquery`
+//     fetchAPI(url).then(function (json) {
+//         if (json.status === 'OK') {
+//             getPlaceDetail(json.candidates[0].place_id)
+//         }
+//     })
+// }
+// function getPlaceDetail(place_id) {
+//     const url = `https://maps.googleapis.com/maps/api/place/details/json?key=${GOOGLE_API_KEY}&place_id=${place_id}`
+//     fetchAPI(url).then(function (json) {
+//         if (json.status === 'OK') {
+//             getPlaceDetail(json.result.photos[0].photo_reference)
+//         }
+//     })
+// }
+// function getPlacePhotos(photo_reference) {
+//     const url = `https://maps.googleapis.com/maps/api/place/photo?key=${GOOGLE_API_KEY}&photoreference=${photo_reference}&maxwidth=1960`
+//     fetchAPI(url).then(function (json) {
+//         console.log(json)
+//     })
+// }
 
 function getWeather(lat, lon) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
