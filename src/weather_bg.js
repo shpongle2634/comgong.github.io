@@ -74,7 +74,7 @@ function setPM10_Status(pm10) {
 }
 
 function getAirPollution(lat, lon) {
-    const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+    const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`
     fetchAPI(url).then(function (json) {
         const list = json.list;
         if (list.length > 0) {
@@ -95,7 +95,7 @@ function getWeather(lat, lon) {
         weatherBox.classList.add(SHOWING)
         // WEATHER ICON
         const icon = new Image();
-        icon.src = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+        icon.src = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
         icon.classList.add('icon')
         weatherBox.appendChild(icon);
 
